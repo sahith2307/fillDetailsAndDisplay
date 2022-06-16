@@ -21,7 +21,7 @@ export class CreateFormComponent implements OnInit {
   });
   onClickSkills = (event: any) => {
     console.log(event.source.value);
-    
+
   };
   ngOnInit(): void {}
 }

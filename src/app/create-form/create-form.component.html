@@ -40,9 +40,9 @@
         <mat-label>Country</mat-label>
         <mat-select formControlName="country">
           <mat-option>None</mat-option>
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2">Option 2</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+          <mat-option value="India">India</mat-option>
+          <mat-option value="America">America</mat-option>
+          <mat-option value="England">England</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -52,9 +52,9 @@
         <mat-label>State</mat-label>
         <mat-select formControlName="state">
           <mat-option>None</mat-option>
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2">Option 2</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+          <mat-option value="Andhra Pradesh">Andhra Pradesh</mat-option>
+          <mat-option value="Telengana">Telengana</mat-option>
+          <mat-option value="Maharashtra">Maharashtra</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -67,7 +67,7 @@
     <div>
       <h4>Skills</h4>
       <section class="example-section">
-        <mat-checkbox value="HTML" (change)="onClickSkills($event)"
+        <mat-checkbox value="HTML" (change)="onClickSkills($event)" 
           >HTML</mat-checkbox
         >
         <mat-checkbox value="CSS" (change)="onClickSkills($event)"
