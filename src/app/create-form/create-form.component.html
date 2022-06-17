@@ -1,31 +1,45 @@
-<div>
+<div class="container">
   <h2>Form</h2>
-  <form [formGroup]="Details">
-    <div>
-      <mat-form-field class="example-full-width" appearance="fill">
+  <form [formGroup]="Details" (submit)="onClickSubmit()">
+    <div class="name-fields">
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        style="width: 50% !important"
+      >
         <mat-label>First Name</mat-label>
         <input matInput placeholder="First Name" formControlName="firstName" />
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        style="width: 50% !important"
+      >
         <mat-label>Last Name</mat-label>
         <input matInput placeholder="Last Name" formControlName="lastName" />
       </mat-form-field>
     </div>
     <div>
-      <label>Gender </label>
-      <mat-radio-group formControlName="gender">
+      <h3>Gender</h3>
+      <mat-radio-group formControlName="gender" class="gender">
         <mat-radio-button value="Male">Male</mat-radio-button>
         <mat-radio-button value="Female">Female</mat-radio-button>
+        <mat-radio-button value="Others">Others</mat-radio-button>
       </mat-radio-group>
     </div>
     <div>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="full-width" appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email" />
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          class="text-field full-width"
+        />
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="full-width" appearance="outline">
         <mat-label>Address</mat-label>
         <textarea
           matInput
@@ -36,7 +50,7 @@
     </div>
     <div>
       <h4>Country</h4>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Country</mat-label>
         <mat-select formControlName="country">
           <mat-option>None</mat-option>
@@ -48,7 +62,7 @@
     </div>
     <div>
       <h4>State</h4>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>State</mat-label>
         <mat-select formControlName="state">
           <mat-option>None</mat-option>
@@ -57,29 +71,96 @@
           <mat-option value="Maharashtra">Maharashtra</mat-option>
         </mat-select>
       </mat-form-field>
+      <div
+        *ngIf="
+          Details.controls['state'].touched && Details.controls['state'].invalid
+        "
+      >
+        <div *ngIf="Details.controls['state']?.errors?.['required']">
+          State is required
+        </div>
+      </div>
     </div>
     <div>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        class="full-width"
+      >
         <mat-label>Zip code</mat-label>
         <input matInput placeholder="pincode" formControlName="zipCode" />
       </mat-form-field>
     </div>
     <div>
       <h4>Skills</h4>
-      <section class="example-section">
-        <mat-checkbox value="HTML" (change)="onClickSkills($event)" 
-          >HTML</mat-checkbox
-        >
-        <mat-checkbox value="CSS" (change)="onClickSkills($event)"
-          >CSS</mat-checkbox
-        >
-        <mat-checkbox value="React" (change)="onClickSkills($event)"
-          >React</mat-checkbox
-        >
-        <mat-checkbox value="Angular" (change)="onClickSkills($event)"
-          >Angular</mat-checkbox
+      <section class="example-section" class="gender">
+        <mat-checkbox
+          *ngFor="let getSkill of skillsLearn; let index = index"
+          value="{{ getSkill }}"
+          (change)="onClickSkills($event)"
+          formArrayName="skills"
+          >{{ getSkill }}</mat-checkbox
         >
       </section>
+    </div>
+    <div class="full-width" formArrayName="experience">
+      <h3>Experience</h3>
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="addExperience()"
+      >
+        Add Experience
+      </button>
+      <div
+        class="full-width"
+        *ngFor="let exp of Expertise.controls; let index = index"
+        [formGroupName]="index"
+      >
+        <h2>Experience#{{ index + 1 }}:</h2>
+        <button
+          type="button"
+          mat-button
+          class="md-warn"
+          color="warn"
+          (click)="removeExperience(index)"
+        >
+          remove
+        </button>
+        <div class="name-fields">
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            style="width: 50% !important"
+          >
+            <mat-label>Company Name</mat-label>
+            <input
+              matInput
+              placeholder="Company Name"
+              formControlName="company"
+            />
+          </mat-form-field>
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            style="width: 50% !important"
+          >
+            <mat-label>Duration</mat-label>
+            <input matInput placeholder="Duration" formControlName="duration" />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Describe your responsibilities</mat-label>
+            <textarea
+              matInput
+              placeholder="Describe"
+              formControlName="describe"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
     <button type="submit" mat-raised-button color="accent">Primary</button>
   </form>

@@ -1,0 +1,22 @@
+.container {
+  padding: 0;
+  margin: 1% 25%;
+  width: 700px;
+  text-align: center;
+}
+.name-fields {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+.gender * {
+  padding-left: 30px;
+  padding-bottom: 30px;
+}
+.text-field {
+  min-width: 50%;
+}
+
+.full-width {
+  width: 100% !important;
+}
